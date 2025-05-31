@@ -1,0 +1,8 @@
+logs
+final_outputs
+*.jsonl
+*.pyc
+ckpts/
+secret.json
+keys.env
+__pycache__

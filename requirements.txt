@@ -1,0 +1,15 @@
+langchain==0.2.12
+langchain-core==0.2.29
+langchain-experimental==0.0.56
+langchain-openai==0.1.1
+langsmith==0.1.98
+lxml_html_clean==0.2.2
+faiss-cpu==1.8.0
+tiktoken==0.7.0
+newspaper3k==0.2.8
+wikipedia-api==0.7.1
+pymupdf4llm==0.0.21
+htmldate==2025.4.15
+mwparserfromhell==0.6.6
+vllm==0.7.2
+minicheck @ git+https://github.com/Liyan06/MiniCheck.git@main
