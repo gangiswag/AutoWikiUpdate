@@ -1,22 +1,24 @@
-# AutoWikiUpdate
+# WiNELL
 
-Code and Data will be released soon!
-
+The repository contains the code and data for the paper [WiNELL: Wikipedia Never-Ending Updating with LLM Agents](https://arxiv.org/pdf/2508.03728).
 
 ## Installation
-clone the repository and install the required dependencies:
+Clone the repository and install the required dependencies:
 
 ```bash
 git clone https://github.com/gangiswag/AutoWikiUpdate.git
 pip install -r requirements.txt
 ```
 
-## Dataset Setup
+## Running the Wikipedia Agent
+WiNELL consists of 3 modules - criteria extraction, update aggregation and wikipedia editing. Each of these modules need to be run sequentially. We also provide a script to run all the modules together `run.sh`. Feel free to modify the CONSTANTS in the script.
 
+```
+bash run.sh $PAGE_ID
+```
+The script above follows the steps described below:
 
-
-## WiNELL
-WiNELL consists of 3 modules - criteria extraction, news search and wikipedia editing. Each of these modules need to be run sequentially
+### Wiki Criteria Extraction
 
 To run the criteria extraction for a paritcular wikipedia entity
 ```bash
@@ -40,6 +42,8 @@ python3 extract_wikipedia_criteria.py \
     --time_delta $TIME_DELTA \
     --time_delta_file $OUTPUT_DIR/time_delay.json \
 ```
+
+### Online Update Aggregation
 
 After running criteria extraction now we can run the the new search agent for a the same wikipedia entity. We run the search agent for every criteria file we have extracted.
 ```bash
@@ -75,6 +79,8 @@ for file in "$CRITERIA_DIR"/*.json; do
         --time_delta "$td" \
 ```
 
+### Fine-grained Wikipedia Editing
+
 Finally we can now run the wikipedia editor to incorporate the new information in the wikipedia article. The `use_trained_model` flag enables the fine-tuned editor to be used for editing wikipedia, we also support using a prompted LLM for editing - pass the corresponding model in `model` flag
 ```bash
 cd agent
@@ -107,21 +113,6 @@ for file in "$CRITERIA_DIR"/*.json; do
         --out_dir "$UPDATED_CONTENT_DIR" \
         --use_trained_model  # uses the fine-tuned editor
 ```
-
-Alternatively we also provide a script to run all the modules together `run.sh`. Feel free to modify the CONSTANTS in the script.
-
-```
-bash run.sh $PAGE_ID
-```
-
-## Baselines
-
-
-
-
-
-## Evaluations
-
 
 
 
